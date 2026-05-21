@@ -1,43 +1,23 @@
 import socket
 
-# Common subdomains list
+domain = input("Enter domain: ")
+
 subdomains = [
     "www",
     "mail",
     "ftp",
-    "webmail",
-    "admin",
     "blog",
-    "test",
-    "dev",
-    "api",
-    "shop",
-    "portal",
-    "ns1",
-    "ns2"
+    "api"
 ]
 
-# Get domain from user
-domain = input("Enter domain (example: google.com): ")
-
-print("\n===== Subdomain Finder =====\n")
-
-found = 0
-
-# Check each subdomain
 for sub in subdomains:
-    subdomain = f"{sub}.{domain}"
+
+    url = sub + "." + domain
 
     try:
-        # Resolve subdomain
-        ip = socket.gethostbyname(subdomain)
+        ip = socket.gethostbyname(url)
 
-        print(f"[FOUND] {subdomain} --> {ip}")
-        found += 1
+        print(url, "->", ip)
 
-    except socket.gaierror:
-        # Subdomain not found
+    except:
         pass
-
-# Final result
-print(f"\nTotal Subdomains Found: {found}")
