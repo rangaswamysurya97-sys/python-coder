@@ -1,38 +1,19 @@
-import re
+user_input = input("Enter input: ")
 
-# Common SQL Injection patterns
-SQL_PATTERNS = [
-    r"(\bor\b|\band\b).*=.*",     # OR 1=1
-    r"(--)",                      # SQL comment
-    r"(\bunion\b)",               # UNION keyword
-    r"(\bselect\b)",              # SELECT keyword
-    r"(\bdrop\b)",                # DROP keyword
-    r"(\binsert\b)",              # INSERT keyword
-    r"(\bdelete\b)",              # DELETE keyword
-    r"(\bupdate\b)",              # UPDATE keyword
-    r"('|\")",                    # Single or double quotes
-    r"(;)",                       # Semicolon
+patterns = [
+    "' OR '1'='1",
+    "--",
+    "DROP TABLE",
+    "SELECT *"
 ]
 
-def detect_sql_injection(user_input):
-    detected = []
+for pattern in patterns:
 
-    for pattern in SQL_PATTERNS:
-        if re.search(pattern, user_input, re.IGNORECASE):
-            detected.append(pattern)
+    if pattern.lower() in user_input.lower():
 
-    if detected:
-        print("\n[WARNING] Possible SQL Injection Detected!")
-        print("\nDetected Patterns:")
+        print("Possible SQL Injection Detected")
+        break
 
-        for item in detected:
-            print("-", item)
+else:
 
-    else:
-        print("\n[SAFE] No SQL Injection Patterns Detected.")
-
-# User input
-text = input("Enter input to scan: ")
-
-# Run detection
-detect_sql_injection(text)
+    print("Input Looks Safe")
