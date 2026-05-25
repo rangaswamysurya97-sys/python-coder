@@ -1,3 +1,10 @@
-User login success
-Failed login attempt
-System started
+INFO User login successful from 192.168.1.10
+WARNING Disk usage reaching limit
+ERROR Failed login attempt from 192.168.1.20
+INFO Database connected successfully
+ERROR Connection timeout from 192.168.1.20
+WARNING CPU temperature high
+INFO File uploaded successfully from 192.168.1.15
+ERROR Unauthorized access from 192.168.1.30
+INFO User logout successful
+WARNING Memory usage high
